@@ -1,0 +1,73 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.page {
+  padding-block: $space-16;
+
+  @include respond-to('md') {
+    padding-block: $space-24;
+  }
+}
+
+.layout {
+  max-width: 640px;
+}
+
+.eyebrow {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-widest;
+  text-transform: uppercase;
+  color: $color-text-muted;
+  margin-bottom: $space-5;
+}
+
+.name {
+  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
+  font-weight: $font-weight-bold;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+  line-height: $line-height-tight;
+  margin-bottom: $space-10;
+  padding-bottom: $space-8;
+  border-bottom: 1px solid $color-border;
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  p {
+    font-size: $font-size-md;
+    line-height: $line-height-loose;
+    color: $color-text-secondary;
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  margin-top: $space-10;
+  padding-top: $space-10;
+  border-top: 1px solid $color-border;
+
+  @include respond-to('sm') {
+    flex-direction: row;
+    gap: $space-8;
+  }
+}
+
+.link {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-accent;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-accent-hover;
+  }
+}

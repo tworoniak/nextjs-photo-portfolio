@@ -1,0 +1,40 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-6;
+  padding-block: $space-12;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-widest;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: $space-8;
+}
+
+.pubLink,
+.pubName {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  letter-spacing: $letter-spacing-wide;
+  transition: color $transition-fast;
+}
+
+.pubLink:hover {
+  color: $color-text-primary;
+}

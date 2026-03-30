@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
 import { getPublishedGalleries } from "@/data/galleries";
-
-// Journal slugs are added in Step 6 once the MDX pipeline is in place.
-// Import getJournalSlugs() here and extend the entries array below.
+import { getAllJournalPosts } from "@/lib/mdx/journal";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -27,5 +25,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  return [...staticRoutes, ...galleryRoutes];
+  const journalRoutes: MetadataRoute.Sitemap = getAllJournalPosts().map(
+    (post) => ({
+      url: `${base}/journal/${post.slug}`,
+      lastModified: post.publishedAt,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    })
+  );
+
+  return [...staticRoutes, ...galleryRoutes, ...journalRoutes];
 }
