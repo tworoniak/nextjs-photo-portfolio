@@ -1,0 +1,71 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.wrapper {
+  display: grid;
+  gap: $space-8;
+
+  @include respond-to('md') {
+    grid-template-columns: 1fr 1fr;
+    gap: $space-12;
+    align-items: start;
+  }
+}
+
+.description {
+  p {
+    font-size: $font-size-md;
+    line-height: $line-height-loose;
+    color: $color-text-secondary;
+  }
+
+  @include respond-to('md') {
+    grid-column: 1 / 2;
+  }
+}
+
+.details {
+  display: grid;
+  gap: $space-4;
+
+  @include respond-to('md') {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  padding-bottom: $space-4;
+  border-bottom: 1px solid $color-border;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  dt {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    color: $color-text-muted;
+  }
+
+  dd {
+    font-size: $font-size-base;
+    color: $color-text-primary;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+
+  @include respond-to('md') {
+    grid-column: 1 / 2;
+  }
+}

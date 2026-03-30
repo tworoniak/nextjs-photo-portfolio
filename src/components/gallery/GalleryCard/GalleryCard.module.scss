@@ -1,0 +1,81 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.card {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background-color: $color-surface;
+
+  &:hover .image {
+    transform: scale(1.03);
+  }
+
+  &:hover .overlay {
+    opacity: 0.2;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 3px;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform $transition-slower;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: $color-bg;
+  opacity: 0;
+  transition: opacity $transition-base;
+}
+
+.meta {
+  padding: $space-4 0 $space-2;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.title {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-snug;
+  color: $color-text-primary;
+  line-height: $line-height-snug;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  flex-wrap: wrap;
+}
+
+.location,
+.date {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.location {
+  &::after {
+    content: '·';
+    margin-left: $space-3;
+    color: $color-border;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}

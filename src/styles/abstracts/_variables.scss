@@ -1,0 +1,102 @@
+// =============================================================================
+// Color palette
+// =============================================================================
+
+$color-bg:          #0a0a0a;
+$color-bg-elevated: #111111;
+$color-surface:     #1a1a1a;
+$color-border:      #2a2a2a;
+
+$color-text-primary:   #f0f0f0;
+$color-text-secondary: #888888;
+$color-text-muted:     #555555;
+
+$color-accent:       #e8e0d0;   // warm off-white — use sparingly
+$color-accent-hover: #ffffff;
+
+// =============================================================================
+// Typography
+// =============================================================================
+
+$font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+$font-serif: 'Georgia', 'Times New Roman', serif;
+$font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+
+$font-size-xs:   0.75rem;    // 12px
+$font-size-sm:   0.875rem;   // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-md:   1.125rem;   // 18px
+$font-size-lg:   1.25rem;    // 20px
+$font-size-xl:   1.5rem;     // 24px
+$font-size-2xl:  2rem;       // 32px
+$font-size-3xl:  2.5rem;     // 40px
+$font-size-4xl:  3.5rem;     // 56px
+$font-size-5xl:  5rem;       // 80px
+
+$font-weight-regular: 400;
+$font-weight-medium:  500;
+$font-weight-semibold: 600;
+$font-weight-bold:    700;
+
+$line-height-tight:  1.1;
+$line-height-snug:   1.3;
+$line-height-normal: 1.5;
+$line-height-loose:  1.75;
+
+$letter-spacing-tight: -0.03em;
+$letter-spacing-snug:  -0.01em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide:   0.05em;
+$letter-spacing-wider:  0.1em;
+$letter-spacing-widest: 0.2em;
+
+// =============================================================================
+// Spacing
+// =============================================================================
+
+$space-1:  0.25rem;   // 4px
+$space-2:  0.5rem;    // 8px
+$space-3:  0.75rem;   // 12px
+$space-4:  1rem;      // 16px
+$space-5:  1.25rem;   // 20px
+$space-6:  1.5rem;    // 24px
+$space-8:  2rem;      // 32px
+$space-10: 2.5rem;    // 40px
+$space-12: 3rem;      // 48px
+$space-16: 4rem;      // 64px
+$space-20: 5rem;      // 80px
+$space-24: 6rem;      // 96px
+$space-32: 8rem;      // 128px
+
+// =============================================================================
+// Layout
+// =============================================================================
+
+$container-max:    1400px;
+$container-narrow: 720px;
+$container-medium: 1080px;
+
+$header-height-mobile: 60px;
+$header-height:        80px;
+
+// =============================================================================
+// Transitions
+// =============================================================================
+
+$transition-fast:   150ms ease;
+$transition-base:   250ms ease;
+$transition-slow:   400ms ease;
+$transition-slower: 600ms ease;
+
+// =============================================================================
+// Z-index scale
+// =============================================================================
+
+$z-below:   -1;
+$z-base:     0;
+$z-raised:   10;
+$z-dropdown: 100;
+$z-sticky:   200;
+$z-overlay:  300;
+$z-modal:    400;
+$z-toast:    500;

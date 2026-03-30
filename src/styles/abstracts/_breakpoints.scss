@@ -1,0 +1,37 @@
+@use 'sass:map';
+
+// =============================================================================
+// Breakpoints
+// =============================================================================
+
+$breakpoints: (
+  'sm':  480px,
+  'md':  768px,
+  'lg':  1024px,
+  'xl':  1280px,
+  '2xl': 1600px,
+);
+
+@mixin respond-to($bp) {
+  $value: map.get($breakpoints, $bp);
+
+  @if $value == null {
+    @warn "Breakpoint `#{$bp}` not found in $breakpoints map.";
+  } @else {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-below($bp) {
+  $value: map.get($breakpoints, $bp);
+
+  @if $value == null {
+    @warn "Breakpoint `#{$bp}` not found in $breakpoints map.";
+  } @else {
+    @media (max-width: calc(#{$value} - 1px)) {
+      @content;
+    }
+  }
+}

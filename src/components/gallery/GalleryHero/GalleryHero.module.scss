@@ -1,0 +1,69 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.hero {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 720px;
+  overflow: hidden;
+
+  @include respond-to('md') {
+    height: 70vh;
+  }
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(10, 10, 10, 0.6) 70%,
+    rgba(10, 10, 10, 0.95) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: $space-8 $space-6;
+  max-width: $container-max;
+  margin-inline: auto;
+
+  @include respond-to('md') {
+    padding: $space-12 $space-8;
+  }
+
+  @include respond-to('xl') {
+    padding: $space-16 $space-12;
+  }
+}
+
+.eyebrow {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-widest;
+  text-transform: uppercase;
+  color: rgba(240, 240, 240, 0.6);
+  margin-bottom: $space-3;
+}
+
+.title {
+  font-size: clamp($font-size-2xl, 5vw, $font-size-4xl);
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+}

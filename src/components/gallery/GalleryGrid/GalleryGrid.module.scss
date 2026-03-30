@@ -1,0 +1,23 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.empty {
+  padding-block: $space-16;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: $font-size-sm;
+}

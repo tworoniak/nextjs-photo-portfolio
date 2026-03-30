@@ -1,0 +1,148 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-sticky;
+  height: $header-height-mobile;
+  display: flex;
+  align-items: center;
+  transition: background-color $transition-base, border-color $transition-base;
+  border-bottom: 1px solid transparent;
+
+  @include respond-to('md') {
+    height: $header-height;
+  }
+
+  &.scrolled {
+    background-color: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom-color: $color-border;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $space-6;
+
+  @include respond-to('md') {
+    padding-inline: $space-8;
+  }
+
+  @include respond-to('xl') {
+    padding-inline: $space-12;
+  }
+}
+
+.wordmark {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-widest;
+  text-transform: uppercase;
+  color: $color-text-primary;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+// Desktop nav
+
+.desktopNav {
+  display: none;
+
+  @include respond-to('md') {
+    display: block;
+  }
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: $space-8;
+}
+
+.navLink {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  color: $color-text-secondary;
+  transition: color $transition-fast;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: $color-accent;
+    transition: width $transition-base;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &.active {
+    color: $color-text-primary;
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+// Hamburger button
+
+.menuButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+
+  @include respond-to('md') {
+    display: none;
+  }
+}
+
+.bar {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background-color: $color-text-primary;
+  transition: transform $transition-base, opacity $transition-base;
+  transform-origin: center;
+
+  &:nth-child(1).barOpen {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  &:nth-child(2).barOpen {
+    opacity: 0;
+  }
+
+  &:nth-child(3).barOpen {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+}

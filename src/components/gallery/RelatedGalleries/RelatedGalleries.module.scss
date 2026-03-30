@@ -1,0 +1,28 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+  padding-top: $space-16;
+  border-top: 1px solid $color-border;
+
+  @include respond-to('md') {
+    padding-top: $space-20;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-8;
+
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

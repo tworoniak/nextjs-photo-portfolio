@@ -1,0 +1,16 @@
+@use '@/styles/abstracts/variables' as *;
+
+.siteWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.main {
+  flex: 1;
+  padding-top: $header-height-mobile;
+
+  @media (min-width: 768px) {
+    padding-top: $header-height;
+  }
+}

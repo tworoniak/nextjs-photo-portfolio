@@ -1,0 +1,124 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn $transition-fast forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: $space-5;
+  right: $space-5;
+  z-index: 1;
+  color: rgba(240, 240, 240, 0.7);
+  padding: $space-2;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 90vw;
+  max-height: 85vh;
+  margin: auto;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  color: rgba(240, 240, 240, 0.5);
+  padding: $space-4;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+.prev {
+  left: $space-2;
+
+  @include respond-to('md') {
+    left: $space-6;
+  }
+}
+
+.next {
+  right: $space-2;
+
+  @include respond-to('md') {
+    right: $space-6;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: $space-5;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-6;
+  padding-inline: $space-16;
+}
+
+.caption {
+  font-size: $font-size-sm;
+  color: rgba(240, 240, 240, 0.5);
+  text-align: center;
+}
+
+.counter {
+  font-size: $font-size-sm;
+  color: rgba(240, 240, 240, 0.4);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

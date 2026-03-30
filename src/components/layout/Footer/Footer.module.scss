@@ -1,0 +1,98 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.footer {
+  border-top: 1px solid $color-border;
+  margin-top: auto;
+}
+
+.inner {
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $space-6;
+  padding-block: $space-12;
+
+  @include respond-to('md') {
+    padding-inline: $space-8;
+  }
+
+  @include respond-to('xl') {
+    padding-inline: $space-12;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  padding-bottom: $space-8;
+  border-bottom: 1px solid $color-border;
+
+  @include respond-to('md') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.wordmark {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-widest;
+  text-transform: uppercase;
+  color: $color-text-primary;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-accent;
+  }
+}
+
+.navList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6;
+}
+
+.navLink {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding-top: $space-8;
+
+  @include respond-to('md') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  line-height: $line-height-normal;
+}
+
+.ctaLink {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-accent;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-accent-hover;
+  }
+}

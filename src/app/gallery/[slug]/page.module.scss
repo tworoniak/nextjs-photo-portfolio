@@ -1,0 +1,20 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.body {
+  padding-bottom: $space-20;
+}
+
+.meta {
+  padding-block: $space-12;
+  border-bottom: 1px solid $color-border;
+
+  @include respond-to('md') {
+    padding-block: $space-16;
+  }
+}
+
+.imageGrid {
+  // Full-bleed — no container padding
+  margin-block: $space-2;
+}

@@ -1,0 +1,55 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+
+:root {
+  // Expose tokens as CSS custom properties for use outside SCSS
+  --color-bg:            #{$color-bg};
+  --color-bg-elevated:   #{$color-bg-elevated};
+  --color-surface:       #{$color-surface};
+  --color-border:        #{$color-border};
+
+  --color-text-primary:   #{$color-text-primary};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-muted:     #{$color-text-muted};
+
+  --color-accent:        #{$color-accent};
+  --color-accent-hover:  #{$color-accent-hover};
+
+  --header-height: #{$header-height-mobile};
+
+  @include respond-to('md') {
+    --header-height: #{$header-height};
+  }
+}
+
+html,
+body {
+  background-color: $color-bg;
+  color: $color-text-primary;
+  font-family: $font-sans;
+  font-size: $font-size-base;
+}
+
+::selection {
+  background-color: $color-accent;
+  color: $color-bg;
+}
+
+:focus-visible {
+  outline: 2px solid $color-accent;
+  outline-offset: 3px;
+}
+
+// Scrollbar styling (webkit)
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-border;
+  border-radius: 3px;
+}

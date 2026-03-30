@@ -1,0 +1,63 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: $z-overlay;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $transition-base;
+
+  &.overlayVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(320px, 85vw);
+  background-color: $color-bg-elevated;
+  border-left: 1px solid $color-border;
+  z-index: $z-modal;
+  display: flex;
+  align-items: center;
+  transform: translateX(100%);
+  transition: transform $transition-slow;
+
+  &.navOpen {
+    transform: translateX(0);
+  }
+
+  @include respond-to('md') {
+    display: none;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-8;
+  width: 100%;
+}
+
+.link {
+  display: block;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  color: $color-text-secondary;
+  padding-block: $space-3;
+  letter-spacing: $letter-spacing-snug;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+}
