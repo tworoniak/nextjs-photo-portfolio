@@ -1,0 +1,101 @@
+@use '@/styles/abstracts/variables' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color $transition-fast, color $transition-fast, border-color $transition-fast, opacity $transition-fast;
+  white-space: nowrap;
+  position: relative;
+
+  &:focus-visible {
+    outline: 2px solid $color-accent;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+// Variants
+
+.primary {
+  background-color: $color-accent;
+  color: $color-bg;
+  border-color: $color-accent;
+
+  &:hover:not(:disabled) {
+    background-color: $color-accent-hover;
+    border-color: $color-accent-hover;
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: $color-text-primary;
+  border-color: $color-border;
+
+  &:hover:not(:disabled) {
+    border-color: $color-text-secondary;
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: $color-text-secondary;
+  border-color: transparent;
+
+  &:hover:not(:disabled) {
+    color: $color-text-primary;
+  }
+}
+
+// Sizes
+
+.sm {
+  font-size: $font-size-xs;
+  padding: $space-2 $space-4;
+}
+
+.md {
+  font-size: $font-size-sm;
+  padding: $space-3 $space-6;
+}
+
+.lg {
+  font-size: $font-size-base;
+  padding: $space-4 $space-8;
+}
+
+// Loading state
+
+.loading {
+  cursor: wait;
+}
+
+.spinner {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  position: absolute;
+}
+
+.hiddenLabel {
+  opacity: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

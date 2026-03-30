@@ -1,0 +1,18 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.page {
+  padding-block: $space-16;
+
+  @include respond-to('md') {
+    padding-block: $space-24;
+  }
+}
+
+.header {
+  margin-bottom: $space-12;
+
+  @include respond-to('md') {
+    margin-bottom: $space-16;
+  }
+}

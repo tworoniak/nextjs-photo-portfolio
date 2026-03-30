@@ -1,0 +1,121 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.article {
+  max-width: 68ch;
+
+  // Headings
+  h1, h2, h3, h4 {
+    color: $color-text-primary;
+    letter-spacing: $letter-spacing-snug;
+    margin-top: $space-10;
+    margin-bottom: $space-4;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h2 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    padding-bottom: $space-3;
+    border-bottom: 1px solid $color-border;
+  }
+
+  h3 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+  }
+
+  // Body text
+  p {
+    font-size: $font-size-md;
+    line-height: $line-height-loose;
+    color: $color-text-secondary;
+    margin-bottom: $space-6;
+  }
+
+  // Lists
+  ul, ol {
+    margin-bottom: $space-6;
+    padding-left: $space-6;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+
+  ul { list-style: disc; }
+  ol { list-style: decimal; }
+
+  li {
+    font-size: $font-size-md;
+    line-height: $line-height-loose;
+    color: $color-text-secondary;
+  }
+
+  // Blockquote
+  blockquote {
+    border-left: 2px solid $color-accent;
+    padding-left: $space-6;
+    margin: $space-8 0;
+
+    p {
+      font-size: $font-size-lg;
+      color: $color-text-primary;
+      font-style: italic;
+    }
+  }
+
+  // Code
+  code {
+    font-family: $font-mono;
+    font-size: 0.9em;
+    background-color: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 3px;
+    padding: 0.1em 0.4em;
+    color: $color-accent;
+  }
+
+  pre {
+    background-color: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    padding: $space-6;
+    overflow-x: auto;
+    margin-bottom: $space-6;
+
+    code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: $color-text-secondary;
+    }
+  }
+
+  // Horizontal rule
+  hr {
+    border: none;
+    border-top: 1px solid $color-border;
+    margin: $space-10 0;
+  }
+
+  // Links
+  a {
+    color: $color-accent;
+    border-bottom: 1px solid rgba($color-accent, 0.3);
+    transition: border-color $transition-fast;
+
+    &:hover {
+      border-color: $color-accent;
+    }
+  }
+
+  // Images
+  img {
+    width: 100%;
+    height: auto;
+    margin-block: $space-8;
+  }
+}

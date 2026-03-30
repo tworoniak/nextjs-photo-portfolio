@@ -1,0 +1,49 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.page {
+  padding-block: $space-16;
+
+  @include respond-to('md') {
+    padding-block: $space-24;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  margin-bottom: $space-10;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.title {
+  font-size: clamp($font-size-2xl, 4vw, $font-size-4xl);
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+}
+
+.excerpt {
+  font-size: $font-size-lg;
+  line-height: $line-height-loose;
+  color: $color-text-secondary;
+  max-width: 60ch;
+}
+
+.date {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  letter-spacing: $letter-spacing-wide;
+}
+
+.divider {
+  border-top: 1px solid $color-border;
+  margin-bottom: $space-10;
+}
