@@ -1,0 +1,85 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.header {
+  max-width: $container-medium;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid $color-border;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: $space-12 1fr;
+  gap: $space-6;
+  padding-block: $space-8;
+  border-bottom: 1px solid $color-border;
+  align-items: start;
+
+  @include respond-to('md') {
+    grid-template-columns: $space-16 1fr;
+    gap: $space-8;
+    padding-block: $space-10;
+  }
+}
+
+.index {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wider;
+  color: $color-text-muted;
+  padding-top: 4px;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  @include respond-to('md') {
+    flex-direction: row;
+    align-items: baseline;
+    gap: $space-8;
+  }
+}
+
+.itemTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-snug;
+  color: $color-text-primary;
+  flex-shrink: 0;
+
+  @include respond-to('md') {
+    min-width: 240px;
+  }
+}
+
+.itemDescription {
+  font-size: $font-size-base;
+  line-height: $line-height-loose;
+  color: $color-text-secondary;
+}
+
+.link {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-accent;
+  align-self: flex-start;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-accent-hover;
+  }
+}

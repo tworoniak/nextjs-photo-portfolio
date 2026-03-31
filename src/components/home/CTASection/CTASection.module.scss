@@ -1,0 +1,93 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/breakpoints' as *;
+
+.section {
+  background-color: $color-bg-elevated;
+  border: 1px solid $color-border;
+}
+
+.inner {
+  max-width: $container-max;
+  margin-inline: auto;
+  padding: $space-16 $space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+
+  @include respond-to('md') {
+    padding: $space-20 $space-8;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-12;
+  }
+
+  @include respond-to('xl') {
+    padding-inline: $space-12;
+  }
+}
+
+.eyebrow {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-widest;
+  text-transform: uppercase;
+  color: $color-text-muted;
+
+  @include respond-to('md') {
+    display: none;
+  }
+}
+
+.heading {
+  font-size: clamp($font-size-xl, 3vw, $font-size-3xl);
+  font-weight: $font-weight-bold;
+  line-height: $line-height-snug;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+  max-width: 20ch;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-6;
+  flex-shrink: 0;
+}
+
+.primaryLink {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  color: $color-bg;
+  background-color: $color-accent;
+  padding: $space-3 $space-6;
+  white-space: nowrap;
+  transition: background-color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-accent-hover;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-accent-hover;
+    outline-offset: 3px;
+  }
+}
+
+.secondaryLink {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+  color: $color-text-secondary;
+  white-space: nowrap;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+}
