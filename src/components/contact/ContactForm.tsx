@@ -107,6 +107,10 @@ export default function ContactForm() {
         <p className={styles.formError} role="alert">{errorMessage}</p>
       )}
 
+      <div role="status" aria-live="polite" aria-atomic="true" className={styles.srOnly}>
+        {state === "loading" && "Sending message…"}
+      </div>
+
       <Button type="submit" size="lg" loading={state === "loading"}>
         Send message
       </Button>

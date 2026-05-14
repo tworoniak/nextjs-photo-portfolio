@@ -27,6 +27,7 @@ export default function Button({
         className
       )}
       disabled={disabled || loading}
+      aria-busy={loading ?? false}
       {...props}
     >
       {loading ? <span className={styles.spinner} aria-hidden="true" /> : null}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { CldImage } from "next-cloudinary";
 import type { GalleryImage } from "@/types/image";
 import styles from "./Lightbox.module.scss";
@@ -12,6 +12,8 @@ interface LightboxProps {
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
+  /** Ref to the trigger element so focus can be restored on close */
+  triggerRef?: React.RefObject<HTMLButtonElement | null>;
 }
 
 export default function Lightbox({
@@ -21,10 +23,16 @@ export default function Lightbox({
   onClose,
   onNext,
   onPrev,
+  triggerRef,
 }: LightboxProps) {
   const current = images[currentIndex];
   const hasMultiple = images.length > 1;
 
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const prevButtonRef = useRef<HTMLButtonElement>(null);
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Arrow key + Escape navigation
   const handleKey = useCallback(
     (e: KeyboardEvent) => {
       if (!isOpen) return;
@@ -40,6 +48,42 @@ export default function Lightbox({
     return () => window.removeEventListener("keydown", handleKey);
   }, [handleKey]);
 
+  // Focus the close button when the lightbox opens
+  useEffect(() => {
+    if (!isOpen) return;
+    closeButtonRef.current?.focus();
+  }, [isOpen]);
+
+  // Restore focus to the trigger when closed
+  useEffect(() => {
+    if (isOpen) return;
+    triggerRef?.current?.focus();
+  }, [isOpen, triggerRef]);
+
+  // Tab trap: cycle only within the three interactive buttons
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const focusable = [closeButtonRef, prevButtonRef, nextButtonRef]
+        .map((r) => r.current)
+        .filter(Boolean) as HTMLButtonElement[];
+      if (focusable.length === 0) return;
+
+      const idx = focusable.indexOf(document.activeElement as HTMLButtonElement);
+      e.preventDefault();
+      if (e.shiftKey) {
+        focusable[(idx - 1 + focusable.length) % focusable.length].focus();
+      } else {
+        focusable[(idx + 1) % focusable.length].focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleTab);
+    return () => window.removeEventListener("keydown", handleTab);
+  }, [isOpen]);
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -50,9 +94,25 @@ export default function Lightbox({
   if (!isOpen || !current) return null;
 
   return (
-    <div className={styles.overlay} onClick={onClose} role="dialog" aria-modal="true" aria-label="Image lightbox">
+    <div
+      className={styles.overlay}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
+    >
+      {/* Dynamic label: announced by screen readers on open and on navigation */}
+      <h2 id="lightbox-title" className={styles.srOnly}>
+        {current.alt || `Image ${currentIndex + 1} of ${images.length}`}
+      </h2>
+
       <div className={styles.inner} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose} aria-label="Close lightbox">
+        <button
+          ref={closeButtonRef}
+          className={styles.closeButton}
+          onClick={onClose}
+          aria-label="Close lightbox"
+        >
           <CloseIcon />
         </button>
 
@@ -71,6 +131,7 @@ export default function Lightbox({
         {hasMultiple && (
           <>
             <button
+              ref={prevButtonRef}
               className={`${styles.navButton} ${styles.prev}`}
               onClick={onPrev}
               aria-label="Previous image"
@@ -78,6 +139,7 @@ export default function Lightbox({
               <ChevronIcon direction="left" />
             </button>
             <button
+              ref={nextButtonRef}
               className={`${styles.navButton} ${styles.next}`}
               onClick={onNext}
               aria-label="Next image"

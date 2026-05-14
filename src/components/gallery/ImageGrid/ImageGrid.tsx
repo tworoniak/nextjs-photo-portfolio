@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { CldImage } from "next-cloudinary";
 import type { GalleryImage } from "@/types/image";
 import Lightbox from "@/components/gallery/Lightbox";
@@ -12,6 +12,7 @@ interface ImageGridProps {
 
 export default function ImageGrid({ images }: ImageGridProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   const isOpen = lightboxIndex !== null;
   const currentIndex = lightboxIndex ?? 0;
@@ -39,7 +40,7 @@ export default function ImageGrid({ images }: ImageGridProps) {
           <li key={image.publicId}>
             <button
               className={styles.item}
-              onClick={() => setLightboxIndex(index)}
+              onClick={(e) => { triggerRef.current = e.currentTarget; setLightboxIndex(index); }}
               aria-label={`View ${image.alt || `image ${index + 1}`}`}
             >
               <CldImage
@@ -64,6 +65,7 @@ export default function ImageGrid({ images }: ImageGridProps) {
         onClose={() => setLightboxIndex(null)}
         onNext={handleNext}
         onPrev={handlePrev}
+        triggerRef={triggerRef}
       />
     </>
   );
