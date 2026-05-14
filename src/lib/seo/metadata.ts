@@ -53,5 +53,6 @@ export function buildMetadata({
 
 export function buildGalleryOgImageUrl(publicId: string): string {
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  if (!cloudName) return siteConfig.ogImage;
   return `https://res.cloudinary.com/${cloudName}/image/upload/w_1200,h_630,c_fill,g_auto,q_auto,f_auto/${publicId}`;
 }

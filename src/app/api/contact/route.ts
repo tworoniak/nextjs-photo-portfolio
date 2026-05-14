@@ -37,9 +37,14 @@ export async function POST(req: NextRequest) {
   const toEmail = process.env.CONTACT_TO_EMAIL;
 
   if (!process.env.RESEND_API_KEY || !toEmail) {
-    // Dev fallback — log and return success so the form is testable without credentials
-    console.log("[contact form]", body);
-    return NextResponse.json({ success: true });
+    if (process.env.NODE_ENV === "development") {
+      console.log("[contact form dev] submission received (not sent)");
+      return NextResponse.json({ success: true });
+    }
+    return NextResponse.json(
+      { error: "Contact form is temporarily unavailable." },
+      { status: 503 }
+    );
   }
 
   // Instantiate lazily so module evaluation never throws without a key
