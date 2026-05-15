@@ -17,7 +17,7 @@ function validatePayload(body: unknown): body is ContactPayload {
     typeof b.email === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email) &&
     typeof b.subject === "string" && b.subject.trim().length > 0 &&
     typeof b.message === "string" && b.message.trim().length > 0 &&
-    typeof b.projectType === "string"
+    typeof b.projectType === "string" && b.projectType.trim().length > 0
   );
 }
 
@@ -28,6 +28,10 @@ export async function POST(req: NextRequest) {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
+  }
+
+  if ((body as Record<string, unknown>).website) {
+    return NextResponse.json({ success: true });
   }
 
   if (!validatePayload(body)) {
