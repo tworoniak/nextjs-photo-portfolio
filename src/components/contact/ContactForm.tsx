@@ -37,11 +37,13 @@ export default function ContactForm() {
       message: data.get("message") as string,
     };
 
+    const body = { ...payload, website: data.get("website") ?? "" };
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(body),
       });
 
       const json = await res.json();
@@ -76,6 +78,9 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form} noValidate>
+      {/* Honeypot — bots fill this, humans don't; checked server-side */}
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
+
       <div className={styles.row}>
         <Input label="Name" name="name" required placeholder="Your name" autoComplete="name" />
         <Input label="Email" name="email" type="email" required placeholder="you@example.com" autoComplete="email" />
