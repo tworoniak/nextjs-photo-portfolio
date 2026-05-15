@@ -1,0 +1,73 @@
+@use '@/styles/abstracts/variables' as *;
+
+.page {
+  display: flex;
+  align-items: center;
+  min-height: 70vh;
+  padding-block: $space-20;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+  max-width: 480px;
+}
+
+.code {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-widest;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+.title {
+  font-size: clamp($font-size-2xl, 4vw, $font-size-3xl);
+  font-weight: $font-weight-bold;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+}
+
+.description {
+  font-size: $font-size-md;
+  color: $color-text-secondary;
+  line-height: $line-height-loose;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-6;
+  margin-top: $space-3;
+}
+
+.primaryAction {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  color: $color-text-primary;
+  border: none;
+  border-bottom: 1px solid $color-text-primary;
+  background: none;
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: color $transition-fast, border-color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-accent;
+    border-color: $color-accent;
+  }
+}
+
+.secondaryLink {
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  transition: color $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-text-primary;
+  }
+}
