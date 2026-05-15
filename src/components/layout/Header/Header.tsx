@@ -40,7 +40,7 @@ export default function Header() {
                     href={link.href}
                     className={clsx(
                       styles.navLink,
-                      pathname.startsWith(link.href) && styles.active
+                      (pathname === link.href || pathname.startsWith(link.href + "/")) && styles.active
                     )}
                   >
                     {link.label}
