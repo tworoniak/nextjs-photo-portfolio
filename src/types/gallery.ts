@@ -10,7 +10,7 @@ export type Gallery = {
   client?: string;
   tags: string[];
   featured?: boolean;
-  published?: boolean;
+  published: boolean;
   seoTitle?: string;
   seoDescription?: string;
 };

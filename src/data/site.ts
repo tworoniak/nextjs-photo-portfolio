@@ -4,8 +4,8 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://example.com',
   ogImage: '/og-default.jpg',
   social: {
-    instagram: '',
-    twitter: '',
+    instagram: null as string | null,
+    twitter: null as string | null,
   },
 };
 
