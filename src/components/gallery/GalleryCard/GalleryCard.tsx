@@ -1,4 +1,4 @@
-"use client";
+"use client"; // CldImage uses useState internally and requires client context in next-cloudinary v6
 
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
