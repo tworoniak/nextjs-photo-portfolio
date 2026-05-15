@@ -40,7 +40,10 @@ export default async function JournalPostPage({ params }: Props) {
   const rawContent = getRawPostContent(slug);
   if (!rawContent) notFound();
 
-  const { content } = await compileMDX({ source: rawContent });
+  const { content } = await compileMDX({
+    source: rawContent,
+    components: {}, // extend with custom MDX components as journal content grows
+  });
 
   return (
     <article className={styles.page}>

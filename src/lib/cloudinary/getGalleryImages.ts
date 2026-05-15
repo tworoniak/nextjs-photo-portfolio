@@ -6,7 +6,7 @@ export async function getGalleryImages(folder: string): Promise<GalleryImage[]> 
     .expression(`folder:${folder}`)
     .with_field("context")
     .sort_by("public_id", "asc")
-    .max_results(100)
+    .max_results(500) // raise limit; implement cursor pagination in Phase 2
     .execute();
 
   return result.resources.map(
@@ -14,7 +14,7 @@ export async function getGalleryImages(folder: string): Promise<GalleryImage[]> 
       publicId: resource.public_id,
       width: resource.width,
       height: resource.height,
-      alt: resource.context?.alt ?? "",
+      alt: resource.context?.alt ?? resource.public_id.split("/").pop() ?? "",
       caption: resource.context?.caption,
       blurDataUrl: undefined,
     })
